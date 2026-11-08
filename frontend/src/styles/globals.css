@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Custom Properties ─────────────────────────────────────── */
+:root {
+  --bg-primary:    #09090f;
+  --bg-secondary:  #0f0f1a;
+  --bg-card:       #13131f;
+  --bg-glass:      rgba(255, 255, 255, 0.04);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(98, 114, 245, 0.4);
+  --text-primary:  #f0f0ff;
+  --text-secondary:#9999bb;
+  --text-muted:    #5a5a7a;
+  --brand:         #6272f5;
+  --brand-glow:    rgba(98, 114, 245, 0.4);
+  --positive:      #10b981;
+  --positive-bg:   rgba(16, 185, 129, 0.12);
+  --negative:      #ef4444;
+  --negative-bg:   rgba(239, 68, 68, 0.12);
+  --neutral:       #f59e0b;
+  --neutral-bg:    rgba(245, 158, 11, 0.12);
+}
+
+.light {
+  --bg-primary:    #f8f9ff;
+  --bg-secondary:  #eef0ff;
+  --bg-card:       #ffffff;
+  --bg-glass:      rgba(0, 0, 0, 0.03);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(98, 114, 245, 0.4);
+  --text-primary:  #0d0d1f;
+  --text-secondary:#555577;
+  --text-muted:    #9999bb;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(98, 114, 245, 0.35);
+  color: #fff;
+}
+
+/* ── Glass Card ─────────────────────────────────────────────────── */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ── Gradient Text ─────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6272f5 0%, #00d4ff 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glow Effects ──────────────────────────────────────────────── */
+.glow-brand { box-shadow: 0 0 30px rgba(98, 114, 245, 0.35); }
+.glow-positive { box-shadow: 0 0 30px rgba(16, 185, 129, 0.35); }
+.glow-negative { box-shadow: 0 0 30px rgba(239, 68, 68, 0.35); }
+.glow-neutral { box-shadow: 0 0 30px rgba(245, 158, 11, 0.35); }
+
+/* ── Noise Texture Overlay ─────────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Shimmer Loading ───────────────────────────────────────────── */
+.shimmer-bg {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(98, 114, 245, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(98, 114, 245, 0.5);
+}
+
+/* ── Focus Ring ────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid rgba(98, 114, 245, 0.6);
+  outline-offset: 2px;
+}
+
+/* ── Input ─────────────────────────────────────────────────────── */
+input::placeholder { color: var(--text-muted); }
+
+/* ── Animated Background Orbs ──────────────────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}

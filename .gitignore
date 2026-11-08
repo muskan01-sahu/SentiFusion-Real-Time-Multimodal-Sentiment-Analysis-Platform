@@ -1,0 +1,19 @@
+# Python virtual environments
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+.env.*
+
+# Node modules
+node_modules/
+
+# Jupyter
+.ipynb_checkpoints/
